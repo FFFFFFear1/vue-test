@@ -1,10 +1,11 @@
 <template>
   <div>
     <h1 class="title">Contacts</h1>
-    <AddContact @add-contact="addContact"/>
+    <AddContact v-on:add-contact="addContact"/>
     <ContactsList
     v-bind:items="items"
-    @remove-contact="removeContact"/>
+    v-on:remove-contact="removeContact"
+    v-on:open-contact="openContact"/>
   </div>
 </template>
 
@@ -28,6 +29,9 @@ export default {
     },
     addContact(contact) {
       this.items.push(contact);
+    },
+    openContact(item) {
+      console.log(item);
     }
   },
   components: {

@@ -4,15 +4,15 @@
       <ContactItem 
       v-for="item in items" :key="item.id"
       v-bind:item="item"
-      @show-modal='showModal'
+      v-on:show-modal='showModal'
       />
       </ul>
-      <div v-if="this.isShowing" class="modal">
+      <div v-if="isShowing" class="modal">
         <div class="modal-handler">
           <h3>Удалить контакт?</h3>
           <div class="modal-btns">
-            <button @click="removeContact()">OK</button>
-            <button @click="closeModal()">Нет</button>
+            <button v-on:click="removeContact()">OK</button>
+            <button v-on:click="closeModal()">Нет</button>
           </div>
         </div>
       </div>  
@@ -38,9 +38,9 @@ export default {
       this.isShowing = false;
     },
     removeContact() {
-      this.isShowing = !this.isShowing;
+      this.isShowing = false;
       this.$emit('remove-contact', this.idToRemove);
-    }
+    },
   },
   components: {
     ContactItem
@@ -67,6 +67,7 @@ ul {
   position: relative;
   margin: 20rem auto;
   background-color: white;
+  border: 1px solid black;
   padding: 2rem 1rem;
 }
 .modal-btns {

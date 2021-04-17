@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="addNewContact">
+  <form v-on:submit.prevent="addNewContact">
     <span>
       <input type="text" placeholder="Enter name..." v-model="name"> 
       <input type="text" placeholder="Enter phone number..." v-model="number">
