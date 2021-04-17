@@ -1,17 +1,35 @@
 <template>
   <div id="app">
-    <ContactsPage/>
+    <h1>Phone book</h1>
+    <ContactsPage v-if="item === null" @open-contact="openContact" />
+    <!-- <ContactPage v-bind:item="item" /> -->
   </div>
 </template>
 
 <script>
-import ContactsPage from "@/components/ContactsPage"
+import ContactsPage from "@/components/ContactsPage";
+import ContactPage from "@/components/ContactPage";
 export default {
-  name: 'App',
+  name: "App",
+  data() {
+    return {
+      item: null,
+    };
+  },
+  methods: {
+    openContact(item) {
+      console.log(item);
+      for (key in item) {
+        console.log(key);
+        console.log(item[key]);
+      }
+    },
+  },
   components: {
-    ContactsPage
-  }
-}
+    ContactsPage,
+    ContactPage,
+  },
+};
 </script>
 
 <style>

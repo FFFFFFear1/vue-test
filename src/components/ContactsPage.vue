@@ -1,45 +1,75 @@
 <template>
   <div>
-    <h1 class="title">Contacts</h1>
-    <AddContact v-on:add-contact="addContact"/>
-    <ContactsList
-    v-bind:items="items"
-    v-on:remove-contact="removeContact"
-    v-on:open-contact="openContact"/>
+    <h2 class="title">Contacts</h2>
+    <AddFlied @add="addContact" />
+    <List
+      v-bind:items="items"
+      v-bind:type="(type = 'contacts')"
+      @remove="removeContact"
+      @open-contact="openContact"
+    />
   </div>
 </template>
 
 <script>
-import AddContact from "@/components/AddContact";
-import ContactsList from "@/components/ContactsList";
+import AddFlied from "@/components/common/AddFlied";
+import List from "@/components/common/List";
 export default {
   data() {
-    return{
-      items:[
-        {id: 1, name: "Максим Богданец", number: "+79772506127"},
-        {id: 2, name: "Мария Белозерова", number: "+79797979797"},
-        {id: 3, name: "Костя Физик", number: "+70000000000"},
-        {id: 4, name: "Никита Федотов", number: "+123123123"}
-      ]
-    }
+    return {
+      type: "",
+      items: [
+        { id: 1, name: "Максим Богданец", value: "+79772506127" },
+        { id: 2, name: "Мария Белозерова", value: "+79797979797" },
+        { id: 3, name: "Костя Физик", value: "+70000000000" },
+        { id: 4, name: "Никита Федотов", value: "+123123123" },
+      ],
+    };
   },
   methods: {
-    removeContact(id) {
-      this.items = this.items.filter(i => i.id != id);
+    removeContact(info) {
+      this.items = this.items.filter((i) => i.id != info.id);
     },
     addContact(contact) {
       this.items.push(contact);
     },
     openContact(item) {
-      console.log(item);
-    }
+      this.$emit("open-contact", item);
+    },
   },
   components: {
-    ContactsList, AddContact
-  }
-}
+    List,
+    AddFlied,
+  },
+};
 </script>
 
-<style scoped>
-/* .title {} */
+<style>
+li {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem auto;
+  width: 40rem;
+  padding: 0.5rem 2rem;
+  border: 1px solid black;
+  border-radius: 1rem;
+}
+button {
+  cursor: pointer;
+  width: 3rem;
+  height: 2.5rem;
+  margin: auto 0;
+  /* border-radius: 1rem; */
+}
+span {
+  width: 30rem;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  text-align: center;
+}
+.item-btns {
+  width: 5rem;
+  display: flex;
+  justify-content: space-between;
+}
 </style>
