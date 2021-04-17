@@ -7,17 +7,15 @@
       @show-modal='showModal'
       />
       </ul>
-      <div v-if="this.isShowing">
-        <div class="modal">
-          <div class="modal-handler">
-            <h3>Удалить контакт?</h3>
-            <div class="modal-btns">
-              <button @click="isShowing = !isShowing;">Нет</button>
-              <button @click="removeContact()">OK</button>
-            </div>
+      <div v-if="this.isShowing" class="modal">
+        <div class="modal-handler">
+          <h3>Удалить контакт?</h3>
+          <div class="modal-btns">
+            <button @click="removeContact()">OK</button>
+            <button @click="closeModal()">Нет</button>
           </div>
         </div>
-      </div>
+      </div>  
   </div>
 </template>
 
@@ -26,20 +24,22 @@ import ContactItem from '@/components/ContactItem'
 export default {
   data() {
     return{
-      idRemoved: 0,
+      idToRemove: 0,
       isShowing: false
     }
   },
   props:['items'],
   methods: {
     showModal(id) {
-      this.idRemoved = id;
-      this.isShowing = !this.isShowing;
-      console.log(this.isShowing);
+      this.idToRemove = id;
+      this.isShowing = true;
+    },
+    closeModal() {
+      this.isShowing = false;
     },
     removeContact() {
       this.isShowing = !this.isShowing;
-      this.$emit('remove-contact', this.idRemoved);
+      this.$emit('remove-contact', this.idToRemove);
     }
   },
   components: {

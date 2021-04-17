@@ -30,6 +30,7 @@ li {
     width: 40rem;
     padding: 0.5rem 2rem;
     border: 1px solid black;
+    border-radius: 1rem;
 }
 button{
   height: 1.8rem;
