@@ -5,7 +5,7 @@
             <p>{{item.number}}</p>
         </span>  
         <div class="item-btns">
-          <!-- <button @click="print()">&#9998;</button>   -->
+          <button @click="print()">&#9998;</button>  
           <button v-on:click="$emit('show-modal', item.id)">&times;</button>
         </div>
         <!-- <button @click="$emit('remove-contact', item.id)"> &times;</button>   -->
