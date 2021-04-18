@@ -27,10 +27,10 @@ var vm = new Vue({
   data: {
     item: [],
     items: [
-      { id: 1, name: "Максим Богданец", value: "+79772506127" },
-      { id: 2, name: "Мария Белозерова", value: "+79797979797" },
-      { id: 3, name: "Костя Физик", value: "+70000000000" },
-      { id: 4, name: "Никита Федотов", value: "+123123123" },
+      { id: 1, name: "Bogdanec Maxim", value: "+7912341234" },
+      { id: 2, name: "Belozerova Maria", value: "+7909870897" },
+      { id: 3, name: "Fizick", value: "+7434343323" },
+      { id: 4, name: "Fedotov Nikita", value: "+5565656556" },
     ],
   },
 });
@@ -44,21 +44,13 @@ export default {
     };
   },
   methods: {
-    // открытие контакта                !!!!!!!!!!!!!!!!поправитьЁ!!!!!!!!!!!!!
+    // открытие контакта
     openContact(item) {
       for (var key in item) {
         this.item.push({
           name: key === "value" ? "number" : key !== undefined ? key : "",
           value: item[key] !== undefined ? item[key] : "",
         });
-
-        // if (key === "value") {
-        // } else {
-        //   this.item.push({
-        //     name: key !== undefined ? key : "",
-        //     value: item[key] !== undefined ? item[key] : "",
-        //   });
-        // }
       }
     },
 
@@ -107,16 +99,6 @@ export default {
 body {
   background-color: #38a10e9d;
 }
-li {
-  display: flex;
-  justify-content: space-between;
-  margin: 1rem auto;
-  width: 40rem;
-  padding: 0.5rem 2rem;
-  border: 1px solid rgb(255, 179, 179);
-  background-color: rgb(255, 255, 255);
-  border-radius: 1rem;
-}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -130,6 +112,16 @@ li {
   width: 50rem;
   border: 1px solid rgb(255, 105, 36);
   border-radius: 2rem;
+}
+li {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem auto;
+  width: 40rem;
+  padding: 0.5rem 2rem;
+  border: 1px solid rgb(255, 179, 179);
+  background-color: rgb(255, 255, 255);
+  border-radius: 1rem;
 }
 .title {
   font-size: 40px;

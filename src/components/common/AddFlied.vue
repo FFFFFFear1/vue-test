@@ -30,7 +30,7 @@
       <input
         type="text"
         maxlength="30"
-        minlength="3"
+        minlength="1"
         placeholder="Enter value..."
         required
         v-model="value"

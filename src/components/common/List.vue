@@ -85,6 +85,11 @@ ul {
 button {
   cursor: pointer;
   margin: auto 0;
+  border: 0px;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  background-color: tomato;
+  color: white;
 }
 .modal {
   position: fixed;
@@ -99,7 +104,7 @@ button {
   position: relative;
   margin: 20rem auto;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid rgb(255, 128, 128);
   padding: 2rem 1rem;
 }
 .modal-btns {
