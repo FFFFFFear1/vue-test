@@ -11,6 +11,7 @@
       />
     </ul>
 
+    <!-- модель для принятия изменения -->
     <div v-if="isShowing" class="modal">
       <div class="modal-handler">
         <h3 id="modal-title" v-html="modal_title"></h3>
@@ -42,14 +43,19 @@ export default {
     },
   },
   methods: {
+    // показ модели
     showModal(info) {
       this.isShowing = true;
       this.modal_title = info.title;
       this.info = info;
     },
+
+    // закрытие модели
     closeModal() {
       this.isShowing = false;
     },
+
+    // передача команды удаления контакта в App
     removeContact() {
       this.closeModal();
       if (this.info.type === "delete") {
@@ -58,6 +64,8 @@ export default {
         this.info.callBack();
       }
     },
+
+    // передача команды открытия контакта в App
     openContact(item) {
       this.$emit("open-contact", item);
     },

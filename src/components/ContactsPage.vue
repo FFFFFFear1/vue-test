@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="title">Contacts</h2>
+    <h2 class="description">Contacts</h2>
     <AddFlied v-bind:type="(type = 'contacts')" @add="addContact" />
     <List
       v-bind:items="items"
@@ -22,12 +22,17 @@ export default {
   },
   props: ["items"],
   methods: {
+    // передача команды удаления контакта в App
     removeContact(info) {
       this.$emit("remove", info);
     },
+
+    // передача команды добавления контакта в App
     addContact(contact) {
       this.$emit("add", contact);
     },
+
+    // передача команды открытия контакта в App
     openContact(item) {
       this.$emit("open-contact", item);
     },
@@ -48,13 +53,6 @@ li {
   padding: 0.5rem 2rem;
   border: 1px solid black;
   border-radius: 1rem;
-}
-button {
-  cursor: pointer;
-  width: 3rem;
-  height: 2.5rem;
-  margin: auto 0;
-  /* border-radius: 1rem; */
 }
 span {
   width: 30rem;

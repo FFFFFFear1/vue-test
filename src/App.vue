@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Phone book</h1>
+    <h1 class="title">Phone book</h1>
     <ContactsPage
       v-if="item.length === 0"
       v-bind:items="items"
@@ -44,21 +44,25 @@ export default {
     };
   },
   methods: {
+    // открытие контакта                !!!!!!!!!!!!!!!!поправитьЁ!!!!!!!!!!!!!
     openContact(item) {
       for (var key in item) {
-        if (key === "value") {
-          this.item.push({
-            name: "number",
-            value: item[key] !== undefined ? item[key] : "",
-          });
-        } else {
-          this.item.push({
-            name: key !== undefined ? key : "",
-            value: item[key] !== undefined ? item[key] : "",
-          });
-        }
+        this.item.push({
+          name: key === "value" ? "number" : key !== undefined ? key : "",
+          value: item[key] !== undefined ? item[key] : "",
+        });
+
+        // if (key === "value") {
+        // } else {
+        //   this.item.push({
+        //     name: key !== undefined ? key : "",
+        //     value: item[key] !== undefined ? item[key] : "",
+        //   });
+        // }
       }
     },
+
+    // закрытие контакта
     closeContact() {
       let newItem = {};
       for (var key in this.item) {
@@ -70,15 +74,23 @@ export default {
       this.items.push(newItem);
       this.item.splice(0, this.item.length);
     },
+
+    // удаление контакта
     removeContact(info) {
       this.items = this.items.filter((i) => i.id != info.id);
     },
+
+    // добавление контакта
     addContact(contact) {
       this.items.push(contact);
     },
+
+    // удаление поля
     removeField(info) {
       this.item = this.item.filter((i) => i.name != info.name);
     },
+
+    // добавление поля
     addField(field) {
       this.item = this.item.filter((i) => i.name != field.name);
       this.item.push({ name: field.name, value: field.value });
@@ -92,12 +104,39 @@ export default {
 </script>
 
 <style>
+body {
+  background-color: #38a10e9d;
+}
+li {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem auto;
+  width: 40rem;
+  padding: 0.5rem 2rem;
+  border: 1px solid rgb(255, 179, 179);
+  background-color: rgb(255, 255, 255);
+  border-radius: 1rem;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  margin: auto;
   margin-top: 60px;
+  padding: 3rem;
+  background-color: #ffa048;
+  width: 50rem;
+  border: 1px solid rgb(255, 105, 36);
+  border-radius: 2rem;
+}
+.title {
+  font-size: 40px;
+  color: white;
+}
+.description {
+  font-size: 30px;
+  color: white;
 }
 </style>
