@@ -47,15 +47,11 @@ export default {
     openContact(item) {
       for (var key in item) {
         if (key === "value") {
-          console.log(key);
-          console.log(item[key]);
           this.item.push({
             name: "number",
             value: item[key] !== undefined ? item[key] : "",
           });
         } else {
-          console.log(key);
-          console.log(item[key]);
           this.item.push({
             name: key !== undefined ? key : "",
             value: item[key] !== undefined ? item[key] : "",
@@ -66,15 +62,13 @@ export default {
     closeContact() {
       let newItem = {};
       for (var key in this.item) {
-        if (this.item[key].name === "number") {
-          newItem["value"] = this.item[key].value;
-        } else {
-          newItem[this.item[key].name] = this.item[key].value;
-        }
+        newItem[
+          this.item[key].name === "number" ? "value" : this.item[key].name
+        ] = this.item[key].value;
       }
       this.items = this.items.filter((i) => i.id != newItem.id);
       this.items.push(newItem);
-      this.item.splice(0, vm.item.length);
+      this.item.splice(0, this.item.length);
     },
     removeContact(info) {
       this.items = this.items.filter((i) => i.id != info.id);
@@ -86,6 +80,7 @@ export default {
       this.item = this.item.filter((i) => i.name != info.name);
     },
     addField(field) {
+      this.item = this.item.filter((i) => i.name != field.name);
       this.item.push({ name: field.name, value: field.value });
     },
   },

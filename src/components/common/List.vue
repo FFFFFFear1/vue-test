@@ -5,6 +5,7 @@
         v-for="value in items"
         :key="value.id"
         v-bind:item="value"
+        v-bind:type="type"
         @show-modal="showModal"
         @open-contact="openContact"
       />
@@ -14,8 +15,8 @@
       <div class="modal-handler">
         <h3 id="modal-title" v-html="modal_title"></h3>
         <div class="modal-btns">
-          <button @click="removeContact()">OK</button>
-          <button @click="closeModal()">Нет</button>
+          <button id="apply-btn" @click="removeContact()">OK</button>
+          <button id="cancel-btn" @click="closeModal()">Нет</button>
         </div>
       </div>
     </div>
@@ -42,16 +43,20 @@ export default {
   },
   methods: {
     showModal(info) {
-      this.info = info;
-      this.modal_title = info.title;
       this.isShowing = true;
+      this.modal_title = info.title;
+      this.info = info;
     },
     closeModal() {
       this.isShowing = false;
     },
     removeContact() {
-      this.isShowing = false;
-      this.$emit("remove", this.info);
+      this.closeModal();
+      if (this.info.type === "delete") {
+        this.$emit("remove", this.info);
+      } else {
+        this.info.callBack();
+      }
     },
     openContact(item) {
       this.$emit("open-contact", item);

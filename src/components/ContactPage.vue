@@ -1,13 +1,18 @@
 <template>
   <div>
     <h2 class="title">Contact</h2>
-    <AddFlied @add="addField" />
+    <AddFlied
+      v-bind:item="item"
+      v-bind:type="(type = 'contact')"
+      @add="addField"
+    />
     <List
       v-bind:items="item"
       v-bind:type="(type = 'contact')"
       @remove="removeField"
     />
-    <button @click="$emit('back')">Back</button>
+    <!-- <button @click="$emit('back')">cancel</button> -->
+    <button @click="$emit('back')">Go back</button>
     <!-- v-on:open-contact="openContact"/> -->
   </div>
 </template>

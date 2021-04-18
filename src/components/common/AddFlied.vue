@@ -1,20 +1,36 @@
 <template>
-  <form @submit.prevent="addNewField">
+  <form @submit.prevent="addNewField" class="guide">
     <span>
-      <input type="text" placeholder="Enter name..." v-model="name" />
+      <select v-if="type === 'contact'" v-model="name">
+        <option v-for="field in fields" :key="field.index" :value="field">
+          {{ field }}
+        </option>
+      </select>
+
+      <input v-else type="text" placeholder="Enter name..." v-model="name" />
       <input type="text" placeholder="Enter value..." v-model="value" />
       <button type="submit">ADD</button>
     </span>
   </form>
 </template>
 
-<script>
+<script type="text/x-template" id="anchored-heading-template">
 export default {
+  name: "guide",
   data() {
     return {
       name: "",
       value: "",
+      fields: ["name",'number','email','age', 'status','other'],
     };
+  },
+  props: {
+    item: {
+      type: Array,
+    },
+    type: {
+      type: String,
+    },
   },
   methods: {
     addNewField() {

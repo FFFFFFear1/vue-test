@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="title">Contacts</h2>
-    <AddFlied @add="addContact" />
+    <AddFlied v-bind:type="(type = 'contacts')" @add="addContact" />
     <List
       v-bind:items="items"
       v-bind:type="(type = 'contacts')"
