@@ -7,6 +7,7 @@
       v-bind:type="(type = 'contact')"
       @remove="removeField"
     />
+    <button @click="$emit('back')">Back</button>
     <!-- v-on:open-contact="openContact"/> -->
   </div>
 </template>
@@ -18,7 +19,6 @@ import List from "@/components/common/List";
 export default {
   data() {
     return {
-      item: this.item,
       type: "",
     };
   },
@@ -29,10 +29,10 @@ export default {
   },
   methods: {
     removeField(info) {
-      this.item = this.item.filter((i) => i.name != info.name);
+      this.$emit("remove", info);
     },
     addField(field) {
-      this.item.push({ name: field.name, value: field.value });
+      this.$emit("add", field);
     },
   },
   components: {

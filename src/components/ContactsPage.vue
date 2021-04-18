@@ -18,20 +18,15 @@ export default {
   data() {
     return {
       type: "",
-      items: [
-        { id: 1, name: "Максим Богданец", value: "+79772506127" },
-        { id: 2, name: "Мария Белозерова", value: "+79797979797" },
-        { id: 3, name: "Костя Физик", value: "+70000000000" },
-        { id: 4, name: "Никита Федотов", value: "+123123123" },
-      ],
     };
   },
+  props: ["items"],
   methods: {
     removeContact(info) {
-      this.items = this.items.filter((i) => i.id != info.id);
+      this.$emit("remove", info);
     },
     addContact(contact) {
-      this.items.push(contact);
+      this.$emit("add", contact);
     },
     openContact(item) {
       this.$emit("open-contact", item);

@@ -2,9 +2,11 @@
   <li>
     <span>
       <p style="text-align: left">
-        <strong>{{ item.name }}</strong>
+        <strong>{{
+          item.name !== undefined ? item.name : "нет названия"
+        }}</strong>
       </p>
-      <p>{{ item.value }}</p>
+      <p>{{ item.value !== undefined ? item.value : "нет значения" }}</p>
     </span>
     <div class="item-btns">
       <button @click="$emit('open-contact', item)">&#9998;</button>
